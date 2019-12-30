@@ -1,6 +1,6 @@
 ﻿/**********************************
  *                                *
- * Arttu Lehtovaara, 1701848      *
+ * Arttu Lehtovaara               *
  *                                *
  **********************************/
 using System;
@@ -22,13 +22,12 @@ namespace task_version
         {
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i] == 0) // etsitään tyhjä paikka, tyhjä paikka = 0
+                if (array[i] == 0) 
                 {
                     return i;
                 }
             }
-            return -1; // palautetaan negatiivinen arvo jos ei löytynyt,
-                       // koska index ei voi olla negatiivinen arvo
+            return -1; 
         }
 
         static void Main(string[] args)
@@ -55,7 +54,7 @@ namespace task_version
             Task[] tasks = new Task[task_count];
             for (int i = 0; i < task_count; i++)
             {
-                // lamda funktio
+                // lamda function
                 tasks[i] = new Task((Object obj) => {
                     int tid = (int)obj;
                     while (true)
@@ -75,12 +74,10 @@ namespace task_version
                         if (index == -1)
                             break;
                         // small or bigger sleep..
-                        // pistin sleep:n 500 millisekunttiin, koska pienemmällä
-                        // sleep:llä (10 tai 100) viimeiset säikeet eivät päässeet täyttämään taulukkoa
                         Thread.Sleep(500); 
                     }
                 },
-                i + 1); // i + 1 menee obj:n arvoksi
+                i + 1);
             }
             // and run the task.. (Start-function)
             for (int i = 0; i < tasks.Length; i++)
@@ -92,12 +89,6 @@ namespace task_version
             // and finally calculate statistics
             int[] products_count = new int[task_count + 1];
             // let's temporarily emulate the results
-            //Random r = new Random();
-            //for (int i = 0; i < products.Length; i++)
-            //{
-            //    products[i] = r.Next(1, task_count + 1);
-            //}
-            // for loop where all the products counted by producer id
             for (int i = 0; i < products.Length; i++)
             {
                 products_count[products[i]]++;
@@ -109,7 +100,6 @@ namespace task_version
             Console.WriteLine();
             for (int i = 0; i < products_count.Length; i++)
             {
-                // nolla pois tulostuksesta
                 if (i == 0)
                 {
                     Console.Write("- ");
@@ -119,10 +109,6 @@ namespace task_version
                     Console.Write(products_count[i] + " ");
                 }
             }
-            //foreach (var item in products_count)
-            //{
-            //    Console.Write(item + " ");
-            //}
             Console.WriteLine();
         }
     }
